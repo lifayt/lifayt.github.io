@@ -1,2 +1,0 @@
-# lifayt.github.io
-Blog
