@@ -51,7 +51,7 @@ spauth
 			console.log(response.d.Title);
 		});
 	});
-{% endlhighlight %}
+{% endhighlight %}
 
 This sample code will return the title of the requested page. I recommend going through the process and attempting to use `node-sp-auth` prior to tinkering with `spsave` and `gulp-spsave` as it is easier to understand & configure the code without additional functionality built around it. 
 
@@ -65,19 +65,19 @@ var spsave = require('spsave').spsave;
 var coreOptions = {
 	siteUrl: '[siteUrl]',
 	notification: true,
-	checkin: true, 				// If you're saving a file exists, you're required to specify that it's a checkin, otherwise the save will fail.
-	checkinType: 1				// Major Version Checkin - see the github repository for more.
+	checkin: true, // If you're saving a file exists, you're required to specify that it's a checkin, otherwise the save will fail.
+	checkinType: 1 // Major Version Checkin - see the github repository for more.
 };
 var creds = {
 	username: '[username]',
 	password: '[password]',
-	fba: true 					// Only required in situations where Forms Based Authentication applies. 
-								// In situations where Forms Based Authentication is not used, please refer to the node-sp-auth documentation on github.
+	fba: true // Only required in situations where Forms Based Authentication applies. 
+ 		  // In situations where Forms Based Authentication is not used, please refer to the node-sp-auth documentation on github.
 };
 
 var fileOptions = {
-	folder: 'SiteAssets',		// Folder you would like the file to be saved to.
-	fileName: 'file.txt',		// Filename you're creating
+	folder: 'SiteAssets', // Folder you would like the file to be saved to.
+	fileName: 'file.txt', // Filename you're creating
 	fileContent: 'Hello World!' // Contents of the file
 }
 spsave(coreOptions, creds, fileOptions)
@@ -97,13 +97,13 @@ Now we get to the real fun! [gulp-spsave](https://github.com/s-KaiNet/gulp-spsav
 
 var spsave = require('gulp-spsave');
 var gulp = require('gulp');
-var creds = require("./settings.js"); 		// I specified my login credentials in another file - more on how to do this at the gulp-spsave 
-											// documentation.
+var creds = require("./settings.js"); // I specified my login credentials in another file - more on how to do this at the gulp-spsave 
+				      // documentation.
 var siteUrl = "[siteUrl]";
 
 gulp.task("deploy_css", function() {
 	return gulp.src('css/*.css')
-		.pipe(spsave({						// Note that you no longer need to provide filename/contents since it's piped in from gulp.
+		.pipe(spsave({ // Note that you no longer need to provide filename/contents since it's piped in from gulp.
 			siteUrl: siteUrl,				
 			folder: "[documentLibrary]",
 			checkin: true,
@@ -116,7 +116,7 @@ gulp.task("watch", function(){
 });
 
 gulp.task("default", ["watch"]);
-{% endhighlight}
+{% endhighlight %}
 
 And that's it! Now, when you run `gulp` in your terminal, it will keep an automatic watch on the `css` folder in your local directory, and any time there's a change to a css file in that directory (or a new one is added!) it will detect it and push it to Sharepoint. Pretty nifty! 
 
